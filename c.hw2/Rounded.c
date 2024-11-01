@@ -5,5 +5,5 @@ int main(){
 	printf("Floating point number: ");
 	scanf("%lf", &x);
 	x = round(x);
-	printf("The rounded value is %lf.\n", round(x));
+	printf("The rounded value is %.0lf.\n", round(x));
 }
