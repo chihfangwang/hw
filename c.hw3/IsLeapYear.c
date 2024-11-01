@@ -15,4 +15,7 @@ int main(){
 	else if(x<=0){
 		printf("ERROR!\n");
 	}
+	else if(x%4!=0 && x>0 ){
+		printf("Not a Leap Year\n");
+}
 }
