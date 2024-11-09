@@ -3,7 +3,7 @@
 int main(){
 	int x;
 	char a, b, c;
-	printf("Tiket type: ");
+	printf("Ticket type: ");
 	scanf("%c",&a);
 
 	printf("Ticket quantity: ");
