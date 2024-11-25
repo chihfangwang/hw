@@ -8,7 +8,7 @@ int main(){
 	grow[0]=0;
 	matured[0]=0;
 	total[0]=1;
-	if (n<0 || n>40){
+	if (n<=0 || n>40){
 		printf("Error! Out of range.\n");
 		return 0;
 	}
