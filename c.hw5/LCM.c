@@ -6,7 +6,7 @@ int main(){
 	for (int i =1; i<=a*b; i++){
 		if(i%a==0 && i%b==0){
 		c=i;
-		printf("LCM(%2d, %2d) = %d\n", a, b, c);
+		printf("LCM(%d, %d) = %d\n", a, b, c);
 		return 0;
 		}
 	}
