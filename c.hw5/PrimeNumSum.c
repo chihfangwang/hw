@@ -22,7 +22,7 @@ int main(){
 			}
 		if(prime==0){
 			if(plus)printf("+ ");
-			printf("%d", i);
+			printf("%d ", i);
 			sum+=i;
 			plus=1;
 		}
