@@ -1,60 +1,69 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <string.h>
 
-int main(){
-	char a[5][8];
-	for(int i=0; i<5; i++){
-		scanf("%c%c%c%c%c%c%c%c", &a[i][0], &a[i][1], &a[i][2], &a[i][3], &a[i][4], &a[i][5], &a[i][6], &a[i][7]);
-	}
-	char num[100][10];
-	for(int i=0;i<100;i++){
-   		scanf("%c%c%c%c%c%c%c%c%c%c", &num[i][0],&num[i][1],&num[i][2],&num[i][3],&num[i][4],&num[i][5],&num[i][6],&num[i][7],&num[i][8],&num[i][9]);
+void swap(int a, int b, char c[100][100]) {
+	char t[100];
+	strcpy(t, c[a]);
+	strcpy(c[a], c[b]);
+	strcpy(c[b], t);
+}
 
-		if(a[0][0]==num[i][2] && a[0][1]==num[i][3] && a[0][2]==num[i][4] && a[0][3]==num[i][5] && a[0][4]==num[i][6] && a[0][5]==num[i][7] && a[0][6]==num[i][8] && a[0][7]==num[i][9]){
-   			printf("%c%c%c%c%c%c%c%c%c%c 10000000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-		}else if(a[1][0]==num[i][2] && a[1][1]==num[i][3] && a[1][2]==num[i][4] && a[1][3]==num[i][5] && a[1][4]==num[i][6] && a[1][5]==num[i][7] && a[1][6]==num[i][8] && a[1][7]==num[i][9]){
-			printf("%c%c%c%c%c%c%c%c%c%c  2000000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-		}
+int check(int a, int b, char c[100][100]) {
+	return strcmp(c[a], c[b]) > 0;
+}
+
+int main() {
+	char a[5][100];
+	char b[100][100];
+	for(int i=0; i<5; i++)
+		scanf("%s", a[i]);
+	for(int i=0; i<100; i++)
+		scanf("%s", b[i]);
+
+	int len[8] = {8, 8, 8, 7, 6, 5, 4, 3};
+	int c[8] = {1000000, 200000, 20000, 40000, 10000, 4000, 1000, 200};
+	for(int i=0; i<99; i++)
+		for(int j=0; j<99-i; j++)
+			if(check(j, j+1, b)) swap(j, j+1, b); 
 	
-		for(int j=2; j<5; j++){
-			if(a[j][0]==num[i][2] && a[j][1]==num[i][3] && a[j][2]==num[i][4] && a[j][3]==num[i][5] && a[j][4]==num[i][6] && a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-   				printf("%c%c%c%c%c%c%c%c%c%c   200000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
+	int vis[100];
+	memset(vis, 0, sizeof(vis));
+
+	int len2 = 0;
+	for(int i=0; i<2; i++) {
+		for(int j=0; j<100; j++) {
+			if(vis[j]) continue;
+			int ok = 1;
+			for(int d=0; d<len[i]; d++)
+				if(a[i][8-d-1] != b[j][10-d-1]) ok = 0;
+			if(ok) {
+				vis[j] = 1;
+				printf("%s ", b[j]);
+				if(!len2) 
+					len2 = printf("%d", c[i]);
+				else 
+					printf("%*d", len2, c[i]);
+				printf("\n");
 			}
 		}
-
-		for(int j=2; j<5; j++){
-                        if(a[j][1]==num[i][3] && a[j][2]==num[i][4] && a[j][3]==num[i][5] && a[j][4]==num[i][6] && a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-                                printf("%c%c%c%c%c%c%c%c%c%c    40000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-                	}
-		}
-
-		for(int j=2; j<5; j++){
-                        if(a[j][2]==num[i][4] && a[j][3]==num[i][5] && a[j][4]==num[i][6] && a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-                                printf("%c%c%c%c%c%c%c%c%c%c    10000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-                	}
-		}
-
-		for(int j=2; j<5; j++){
-                        if(a[j][3]==num[i][5] && a[j][4]==num[i][6] && a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-                                printf("%c%c%c%c%c%c%c%c%c%c     4000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-                	}
-		}
-		
-		for(int j=2; j<5; j++){
-                        if(a[j][4]==num[i][6] && a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-                                printf("%c%c%c%c%c%c%c%c%c%c     1000\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-                	}
-		}
-
-		for(int j=2; j<5; j++){
-                        if(a[j][5]==num[i][7] && a[j][6]==num[i][8] && a[j][7]==num[i][9]){
-                                printf("%c%c%c%c%c%c%c%c%c%c      200\n", num[i][0],num[i][1],num[i][2],num[i][3],num[i][4],num[i][5],num[i][6],num[i][7],num[i][8],num[i][9]);
-                	}
+	}
+	for(int i=2; i<8; i++) {
+		for(int j=0; j<100; j++) {
+			if(vis[j]) continue;
+				for(int k=2; k<5; k++) {
+					int ok = 1;
+					for(int d=0; d<len[i]; d++)
+						if(a[k][8-d-1] != b[j][10-d-1]) ok = 0;
+					if(ok) {
+						vis[j] = 1;
+						printf("%s ", b[j]);
+						if(!len2) 
+							len2 = printf("%d", c[i]);
+						else 
+							printf("%*d", len2, c[i]);
+						printf("\n");
+					}
+			}
 		}
 	}
 }
-
-
-
-
-				
-			
