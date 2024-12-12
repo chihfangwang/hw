@@ -2,14 +2,10 @@
 int main(){
 	int num[10];
 	int a, b=0;
+	printf("Enter data:");
 	for(int i=0; i<10;i++){
 		scanf(" %d", &num[i]);
 	}
-	printf("Enter data:");
-	for(int i=0; i<10;i++){
-		printf(" %d", num[i]);
-	}
-	printf("\n");
 	printf("Enter a number to find: ");
 	scanf(" %d", &a);
 	for(int i=0; i<10;i++){
