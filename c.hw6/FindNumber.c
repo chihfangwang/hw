@@ -1,9 +1,9 @@
 #include<stdio.h>
 int main(){
-	int num[9];
+	int num[10];
 	int a, b=0;
 	for(int i=0; i<10;i++){
-		scanf("%d", &num[i]);
+		scanf(" %d", &num[i]);
 	}
 	printf("Enter data:");
 	for(int i=0; i<10;i++){
@@ -11,7 +11,7 @@ int main(){
 	}
 	printf("\n");
 	printf("Enter a number to find: ");
-	scanf("%d", &a);
+	scanf(" %d", &a);
 	for(int i=0; i<10;i++){
 		if(num[i] == a){
 		b=i+1;
