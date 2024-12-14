@@ -8,7 +8,7 @@ int compare(const void*a, const void*b){
 }
 
 int main(){
-	int num[9];
+	int num[10];
 	int cheating=0;
 	int all90=1;
 	printf("Enter the scores: ");
